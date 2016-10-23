@@ -8,9 +8,10 @@
 	"use strict";
 
 	/*global define*/
+	var isElectron = window && window.process && window.process.type;
 	if (typeof define === 'function' && define.amd) {
 		define(['moment'], factory);                 // AMD
-	} else if (typeof module === 'object' && module.exports) {
+	} else if (typeof module === 'object' && module.exports && !isElectron) {
 		module.exports = factory(require('moment')); // Node
 	} else {
 		factory(root.moment);                        // Browser
